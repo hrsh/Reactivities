@@ -8,7 +8,7 @@ interface IProps {
 const CarItem: React.FC<IProps> = ({ car }) => {
     return (
         <div>
-            <h1>{car.model}, {car.color}</h1>
+            <h1>{car.model}, {car.color} with top speed of {car.topSpeed}</h1>
         </div>
     )
 }

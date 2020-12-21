@@ -20,20 +20,28 @@ namespace Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(opt =>
+           {
+               opt.AddPolicy("CorsPolicy", policy =>
+               {
+                   policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:11455");
+               });
+           });
             services.AddDbContext<DataContext>(opt =>
-            {
-                //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
-            });
+           {
+               //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+               opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+           });
             services.AddControllers();
             services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
-            });
+           {
+               c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
+           });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("CorsPolicy");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -48,9 +56,9 @@ namespace Api
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+           {
+               endpoints.MapControllers();
+           });
         }
     }
 }

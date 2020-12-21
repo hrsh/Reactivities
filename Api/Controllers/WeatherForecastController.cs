@@ -16,10 +16,12 @@ namespace Api.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private readonly DataContext _context;
-        public WeatherForecastController(DataContext context)
+        public WeatherForecastController(
+            DataContext context,
+            ILogger<WeatherForecastController> logger)
         {
             _context = context;
-
+            _logger = logger;
         }
 
         private static readonly string[] Summaries = new[]
@@ -37,11 +39,6 @@ namespace Api.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Value>>> Get(CancellationToken ct)

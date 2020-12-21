@@ -1,14 +1,19 @@
 .App {
-  color: rgb(125, 125, 16);
 }
 
 .App h1 {
   text-transform: capitalize;
   border: 1px solid rgb(12, 120, 220);
-  border-radius: 12px;
-  padding: 7px 17px;
+  border-radius: 3px;
+  padding: 12px 17px;
   background-color: rgb(12, 120, 250);
   color: aliceblue;
+  font-weight: 300 !important;
+}
+
+.App h1::before {
+  content: "-";
+  padding-right: 20px;
 }
 
 .App-logo {
