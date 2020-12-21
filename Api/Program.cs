@@ -14,14 +14,15 @@ namespace Api
             using var scope = host.Services.CreateScope();
             var context = scope.ServiceProvider.GetRequiredService<DataContext>();
             context.Database.Migrate();
+            Seed.SeedData(context);
             host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
+           {
+               webBuilder.UseStartup<Startup>();
+           });
     }
 }

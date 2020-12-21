@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -29,10 +30,11 @@ namespace Api
            });
             services.AddDbContext<DataContext>(opt =>
            {
-               //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-               opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
            });
             services.AddControllers();
+            services.AddMediatR(typeof(Application.ActivityItems.Queries.GetList).Assembly);
             services.AddSwaggerGen(c =>
            {
                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
