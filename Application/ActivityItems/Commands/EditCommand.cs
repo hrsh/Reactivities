@@ -29,13 +29,14 @@ namespace Application.ActivityItems.Commands
                 if (null == t) throw new Exception("Could not find activity");
 
                 t.Title = request.Model.Title ?? t.Title;
+                t.Description = request.Model.Description ?? t.Description;
+                t.Category = request.Model.Category ?? t.Category;
+                t.City = request.Model.City ?? t.City;
+                t.Date = request.Model.Date;
+                t.Venue = request.Model.Venue ?? t.Venue;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
-                //var save = await _context.SaveChangesAsync(cancellationToken) > 0;
-                //if (save) return Unit.Value;
-
-                //throw new Exception("Error updating activity");
             }
         }
     }

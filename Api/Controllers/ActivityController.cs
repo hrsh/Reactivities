@@ -26,7 +26,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Activity>> Get(System.Guid id, CancellationToken ct)
         {
-            var t = await _mediator.Send(new Application.ActivityItems.Queries.GetById
+            var t = await _mediator.Send(new GetById
             {
                 Id = id
             }, ct);
@@ -42,6 +42,12 @@ namespace Api.Controllers
 
         [HttpPut]
         public async Task<ActionResult<Unit>> Edit(EditCommand command)
+        {
+            return await _mediator.Send(command);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<Unit>> Delete(DeleteCommand command)
         {
             return await _mediator.Send(command);
         }

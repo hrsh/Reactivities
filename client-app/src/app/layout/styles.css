@@ -1,0 +1,8 @@
+.ui.inverted.top.fixed.menu {
+  background-color: #1746e0 !important;
+  border: none;
+}
+
+.ui.inverted.top.fixed.menu > div.item {
+  border: none;
+}

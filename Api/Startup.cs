@@ -25,13 +25,13 @@ namespace Api
            {
                opt.AddPolicy("CorsPolicy", policy =>
                {
-                   policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:11455");
+                   policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
                });
            });
             services.AddDbContext<DataContext>(opt =>
            {
-                //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+               //opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+               opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
            });
             services.AddControllers();
             services.AddMediatR(typeof(Application.ActivityItems.Queries.GetList).Assembly);
